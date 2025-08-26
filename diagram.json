@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "author": "Gustavo Silva Deodato",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-breadboard", "id": "bb1", "top": -137.4, "left": -285.2, "attrs": {} },
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 132.74,
+      "left": -15.5,
+      "rotate": 90,
+      "attrs": { "env": "micropython-20231227-v1.22.0" }
+    },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic1",
+      "top": 154.1,
+      "left": -348.3,
+      "rotate": 180,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": -14.4,
+      "left": -230.95,
+      "rotate": 90,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -186,
+      "left": -217,
+      "attrs": { "color": "red", "flip": "1" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:GND.1", "bb1:bn.21", "black", [ "v-76.65", "h-37.6" ] ],
+    [ "r1:2", "bb1:7b.j", "", [ "$bb" ] ],
+    [ "led1:C", "bb1:bn.6", "green", [ "v0" ] ],
+    [ "led1:A", "r1:1", "green", [ "v0" ] ],
+    [ "esp:25", "r1:2", "green", [ "v-124.65", "h-163.2" ] ],
+    [ "ultrasonic1:GND", "bb1:bn.4", "black", [ "v0" ] ],
+    [ "ultrasonic1:TRIG", "esp:26", "yellow", [ "h0.4", "v-19.2", "h288" ] ],
+    [ "ultrasonic1:ECHO", "esp:27", "purple", [ "v-38.4", "h231.2" ] ],
+    [ "ultrasonic1:VCC", "esp:VP", "red", [ "v19.2", "h345.6" ] ]
+  ],
+  "dependencies": {}
+}
